@@ -6,4 +6,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../Pacogroup.Ecommerce.Infrastructure.Data/Pacogroup.Ecommerce.Infrastructure.Data.csproj" />
+    <ProjectReference Include="../Pacogroup.Ecommerce.Infrastructure.Interfaces/Pacogroup.Ecommerce.Infrastructure.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.79" />
+  </ItemGroup>
+
 </Project>
