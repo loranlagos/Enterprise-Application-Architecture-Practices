@@ -1,0 +1,29 @@
+<Solution>
+  <Folder Name="/Aplicacion/">
+    <Project Path="Aplicacion/Pacogroup.Ecommerce.Application.DTO/Pacogroup.Ecommerce.Application.DTO.csproj" />
+    <Project Path="Aplicacion/Pacogroup.Ecommerce.Application.Interfaces/Pacogroup.Ecommerce.Application.Interfaces.csproj" />
+    <Project Path="Aplicacion/Pacogroup.Ecommerce.Application.Main/Pacogroup.Ecommerce.Application.Main.csproj" />
+    <Project Path="Aplicacion/Pacogroup.Ecommerce.Application.Validator/Pacogroup.Ecommerce.Application.Validator.csproj" />
+  </Folder>
+  <Folder Name="/Dominio/">
+    <Project Path="Dominio/Pacogroup.Ecommerce.Domain.Core/Pacogroup.Ecommerce.Domain.Core.csproj" />
+    <Project Path="Dominio/Pacogroup.Ecommerce.Domain.Entity/Pacogroup.Ecommerce.Domain.Entity.csproj" />
+    <Project Path="Dominio/Pacogroup.Ecommerce.Domain.Interfaces/Pacogroup.Ecommerce.Domain.Interfaces.csproj" />
+  </Folder>
+  <Folder Name="/Infraestructura/">
+    <Project Path="Infraestructura/Pacogroup.Ecommerce.Infrastructure.Data/Pacogroup.Ecommerce.Infrastructure.Data.csproj" />
+    <Project Path="Infraestructura/Pacogroup.Ecommerce.Infrastructure.Interfaces/Pacogroup.Ecommerce.Infrastructure.Interfaces.csproj" />
+    <Project Path="Infraestructura/Pacogroup.Ecommerce.Infrastructure.Repository/Pacogroup.Ecommerce.Infrastructure.Repository.csproj" />
+  </Folder>
+  <Folder Name="/Prueba/">
+    <Project Path="Prueba/Pacogroup.Ecommerce.Application.IntegrationTest/Pacogroup.Ecommerce.Application.IntegrationTest.csproj" />
+  </Folder>
+  <Folder Name="/Servicio/">
+    <Project Path="Servicio/Pacogroup.Ecommerce.Servicio.WebApi/Pacogroup.Ecommerce.Services.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/Transversal/">
+    <Project Path="Transversal/Pacogroup.Ecommerce.Transversal.Common/Pacogroup.Ecommerce.Transversal.Common.csproj" />
+    <Project Path="Transversal/Pacogroup.Ecommerce.Transversal.Logging/Pacogroup.Ecommerce.Transversal.Logging.csproj" />
+    <Project Path="Transversal/Pacogroup.Ecommerce.Transversal.Mapper/Pacogroup.Ecommerce.Transversal.Mapper.csproj" />
+  </Folder>
+</Solution>
