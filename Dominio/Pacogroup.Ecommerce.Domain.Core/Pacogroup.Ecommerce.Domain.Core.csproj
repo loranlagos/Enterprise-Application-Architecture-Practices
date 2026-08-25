@@ -1,5 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <ItemGroup>
+    <ProjectReference Include="..\Pacogroup.Ecommerce.Domain.Entity\Pacogroup.Ecommerce.Domain.Entity.csproj" />
+    <ProjectReference Include="..\Pacogroup.Ecommerce.Domain.Interfaces\Pacogroup.Ecommerce.Domain.Interfaces.csproj" />
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
