@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../../Transversal/Pacogroup.Ecommerce.Transversal.Common/Pacogroup.Ecommerce.Transversal.Common.csproj" />
+    <ProjectReference Include="../Pacogroup.Ecommerce.Application.DTO/Pacogroup.Ecommerce.Application.DTO.csproj" />
+  </ItemGroup>
+
 </Project>

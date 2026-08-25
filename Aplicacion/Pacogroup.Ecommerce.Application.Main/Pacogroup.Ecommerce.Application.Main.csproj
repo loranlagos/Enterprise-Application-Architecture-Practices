@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../../Dominio/Pacogroup.Ecommerce.Domain.Entity/Pacogroup.Ecommerce.Domain.Entity.csproj" />
+    <ProjectReference Include="../../Dominio/Pacogroup.Ecommerce.Domain.Interfaces/Pacogroup.Ecommerce.Domain.Interfaces.csproj" />
+    <ProjectReference Include="../../Transversal/Pacogroup.Ecommerce.Transversal.Common/Pacogroup.Ecommerce.Transversal.Common.csproj" />
+    <ProjectReference Include="../Pacogroup.Ecommerce.Application.DTO/Pacogroup.Ecommerce.Application.DTO.csproj" />
+    <ProjectReference Include="../Pacogroup.Ecommerce.Application.Interfaces/Pacogroup.Ecommerce.Application.Interfaces.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="16.2.0" />
+  </ItemGroup>
+
 </Project>
