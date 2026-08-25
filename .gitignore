@@ -1,0 +1,244 @@
+```gitignore
+# ============================================================
+# .NET / ASP.NET Core
+# ============================================================
+
+bin/
+obj/
+out/
+publish/
+
+[Bb]in/
+[Oo]bj/
+
+*.dll
+*.exe
+*.pdb
+*.cache
+*.tmp
+
+# ============================================================
+# Visual Studio
+# ============================================================
+
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Visual Studio build artifacts
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+
+# ============================================================
+# Visual Studio Code
+# ============================================================
+
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# ============================================================
+# JetBrains Rider / ReSharper
+# ============================================================
+
+.idea/
+_ReSharper*/
+*.DotSettings.user
+
+# ============================================================
+# NuGet
+# ============================================================
+
+*.nupkg
+*.snupkg
+packages/
+.nuget/
+
+# Allow NuGet config if intentionally included
+!NuGet.Config
+
+# ============================================================
+# Test results / Code coverage
+# ============================================================
+
+TestResults/
+test-results/
+coverage/
+coverage-results/
+coverage-report/
+
+*.coverage
+*.coveragexml
+*.coverage.json
+*.coverage.info
+*.trx
+
+# ============================================================
+# Logs
+# ============================================================
+
+logs/
+Logs/
+*.log
+
+# Serilog local files
+log/
+*.log.*
+
+# ============================================================
+# Environment variables / Secrets
+# ============================================================
+
+.env
+.env.*
+!.env.example
+
+secrets.json
+appsettings.Local.json
+appsettings.Development.local.json
+appsettings.*.local.json
+
+# User Secrets local storage should never be committed
+**/secrets/
+
+# Certificates / keys
+*.pfx
+*.p12
+*.pem
+*.key
+*.crt
+*.cer
+
+# ============================================================
+# Database / Local persistence
+# ============================================================
+
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+data/
+local-data/
+docker-data/
+
+# ============================================================
+# Docker
+# ============================================================
+
+docker-compose.override.yml
+compose.override.yml
+
+# Local Docker environment files
+docker/.env
+docker/*.local.yml
+docker/*.override.yml
+
+# ============================================================
+# Redis / RabbitMQ local data
+# ============================================================
+
+redis-data/
+rabbitmq-data/
+
+dump.rdb
+appendonly.aof
+
+# ============================================================
+# Azure / Cloud local configuration
+# ============================================================
+
+.azure/
+.azurefunctions/
+local.settings.json
+
+# ============================================================
+# OpenAPI / Generated documentation
+# ============================================================
+
+generated/
+generated-docs/
+
+# Keep manually maintained documentation
+!docs/
+
+# ============================================================
+# Temporary files
+# ============================================================
+
+tmp/
+temp/
+*.bak
+*.old
+*.orig
+*.swp
+*.swo
+
+# ============================================================
+# Operating Systems
+# ============================================================
+
+# Linux
+*~
+.directory
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ============================================================
+# Node.js
+# Useful if any frontend or tooling appears later
+# ============================================================
+
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+.npm/
+.yarn/
+.pnpm-store/
+
+dist/
+.cache/
+
+# ============================================================
+# SonarQube / Code quality tools
+# ============================================================
+
+.sonarqube/
+.scannerwork/
+
+# ============================================================
+# BenchmarkDotNet
+# ============================================================
+
+BenchmarkDotNet.Artifacts/
+
+# ============================================================
+# Miscellaneous
+# ============================================================
+
+*.local
+*.pid
+*.seed
+```
