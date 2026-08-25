@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <ProjectReference Include="../../Infraestructura/Pacogroup.Ecommerce.Infrastructure.Interfaces/Pacogroup.Ecommerce.Infrastructure.Interfaces.csproj" />
     <ProjectReference Include="..\Pacogroup.Ecommerce.Domain.Entity\Pacogroup.Ecommerce.Domain.Entity.csproj" />
     <ProjectReference Include="..\Pacogroup.Ecommerce.Domain.Interfaces\Pacogroup.Ecommerce.Domain.Interfaces.csproj" />
   </ItemGroup>

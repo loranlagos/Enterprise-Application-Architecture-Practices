@@ -1,32 +1,50 @@
 ﻿using Pacogroup.Ecommerce.Domain.Entity;
 using Pacogroup.Ecommerce.Domain.Interfaces;
+using Pacogroup.Ecommerce.Infrastructure.Interfaces;
 
 namespace Pacogroup.Ecommerce.Domain.Core;
 
 public class CustomersDomain : ICostumersDomain
 {
-    public Task<bool> DeleteAsync(string customerId)
+    private readonly IUnitOfWork _unitOfWork;
+
+    /// <summary>
+    /// Inyeccion de las interfaces necesarias, es este caso 
+    /// - IUnitOfWork
+    /// </summary>
+    /// <param name="unitOfWork"></param>
+    public CustomersDomain(IUnitOfWork unitOfWork)
     {
-        throw new NotImplementedException();
+        _unitOfWork = unitOfWork;
     }
 
-    public Task<IEnumerable<Costumer>> GetAllAsync()
+    /// <inheritdoc/>
+    public async Task<bool> DeleteAsync(string customerId)
     {
-        throw new NotImplementedException();
+        return await _unitOfWork.Customers.DeleteAsync(customerId);
     }
 
-    public Task<bool> GetAsync(string customerId)
+    /// <inheritdoc/>
+    public async Task<IEnumerable<Costumer>> GetAllAsync()
     {
-        throw new NotImplementedException();
+        return await _unitOfWork.Customers.GetAllAsync();
     }
 
-    public Task<bool> InsertAsync(Costumer customer)
+    /// <inheritdoc/>
+    public async Task<Costumer> GetAsync(string customerId)
     {
-        throw new NotImplementedException();
+        return await _unitOfWork.Customers.GetByIdAsync(customerId);
     }
 
-    public Task<bool> UpdateAsync(Costumer customer)
+    /// <inheritdoc/>
+    public async Task<bool> InsertAsync(Costumer customer)
     {
-        throw new NotImplementedException();
+        return await _unitOfWork.Customers.InsertAsync(customer);
+    }
+
+    /// <inheritdoc/>
+    public async Task<bool> UpdateAsync(Costumer customer)
+    {
+        return await _unitOfWork.Customers.UpdateAsync(customer);
     }
 }
