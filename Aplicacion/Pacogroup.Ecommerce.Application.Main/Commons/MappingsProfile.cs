@@ -6,13 +6,9 @@ namespace Pacogroup.Ecommerce.Application.Main.Commons
 {
     public class MappingsProfile : Profile
     {
-        protected MappingsProfile()
+        public MappingsProfile()
         {
             CreateMap<Costumer, CustomerDTO>().ReverseMap();
-        }
-
-        protected internal MappingsProfile(string profileName) : base(profileName)
-        {
         }
     }
 }

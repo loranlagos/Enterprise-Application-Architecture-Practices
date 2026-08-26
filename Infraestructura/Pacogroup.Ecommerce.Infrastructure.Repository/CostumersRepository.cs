@@ -18,7 +18,7 @@ public class CostumersRepository : ICostumersRepository
     public async Task<bool> DeleteAsync(string costumerId)
     {
         using var connection = _context.CreateConnection();
-        var query = "CostumersDelete";
+        var query = "CustomersDelete";
 
         var parameters = new DynamicParameters();
         parameters.Add("CustomerID", costumerId);
@@ -30,7 +30,7 @@ public class CostumersRepository : ICostumersRepository
     public async Task<IEnumerable<Costumer>> GetAllAsync()
     {
         using var connection = _context.CreateConnection();
-        var query = "CostumersList";
+        var query = "CustomersList";
 
         var customers = await connection.QueryAsync<Costumer>(query, commandType: CommandType.StoredProcedure);
         return customers;
@@ -39,19 +39,19 @@ public class CostumersRepository : ICostumersRepository
     public async Task<Costumer?> GetByIdAsync(string costumerId)
     {
         using var connection = _context.CreateConnection();
-        var query = "CostumersGetById";
+        var query = "CustomersGetById";
 
         var parameters = new DynamicParameters();
         parameters.Add("CustomerID", costumerId);
 
-        var customer = await connection.QuerySingleAsync<Costumer>(query, parameters, commandType: CommandType.StoredProcedure);
+        var customer = await connection.QuerySingleOrDefaultAsync<Costumer>(query, parameters, commandType: CommandType.StoredProcedure);
         return customer;
     }
 
     public async Task<bool> InsertAsync(Costumer customer)
     {
         using var connection = _context.CreateConnection();
-        var query = "CostumersInsert";
+        var query = "CustomersInsert";
 
         var parameters = new DynamicParameters();
         parameters.Add("CustomerID", customer.CustomerId);
@@ -73,7 +73,7 @@ public class CostumersRepository : ICostumersRepository
     public async Task<bool> UpdateAsync(Costumer customer)
     {
         using var connection = _context.CreateConnection();
-        var query = "CostumersUpdate";
+        var query = "CustomersUpdate";
 
         var parameters = new DynamicParameters();
         parameters.Add("CustomerID", customer.CustomerId);

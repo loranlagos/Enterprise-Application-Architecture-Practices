@@ -10,4 +10,12 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../../Aplicacion/Pacogroup.Ecommerce.Application.DTO/Pacogroup.Ecommerce.Application.DTO.csproj" />
+    <ProjectReference Include="../../Aplicacion/Pacogroup.Ecommerce.Application.Interfaces/Pacogroup.Ecommerce.Application.Interfaces.csproj" />
+    <ProjectReference Include="../../Aplicacion/Pacogroup.Ecommerce.Application.Main/Pacogroup.Ecommerce.Application.Main.csproj" />
+    <ProjectReference Include="../../Dominio/Pacogroup.Ecommerce.Domain.Core/Pacogroup.Ecommerce.Domain.Core.csproj" />
+    <ProjectReference Include="../../Infraestructura/Pacogroup.Ecommerce.Infrastructure.Repository/Pacogroup.Ecommerce.Infrastructure.Repository.csproj" />
+  </ItemGroup>
+
 </Project>

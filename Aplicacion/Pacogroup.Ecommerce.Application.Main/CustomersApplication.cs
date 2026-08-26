@@ -56,6 +56,11 @@ public class CustomersApplication : ICostumersApplication
                 response.IsSucces = true;
                 response.Message = "Registro eliminado exitosamente.";
             }
+            else
+            {
+                response.IsSucces = true;
+                response.Message = $"El cliente {customerId} no existe.";
+            }
         }
         catch (System.Exception ex)
         {
@@ -104,6 +109,7 @@ public class CustomersApplication : ICostumersApplication
                 response.IsSucces = true;
                 response.Message = "Registro obtenido exitosamente.";
             }
+
         }
         catch (System.Exception ex)
         {
@@ -127,6 +133,11 @@ public class CustomersApplication : ICostumersApplication
             {
                 response.IsSucces = true;
                 response.Message = "Registro actualizado exitosamente.";
+            }
+            else
+            {
+                response.IsSucces = true;
+                response.Message = $"El cliente {customerDTO.CustomerId} no existe.";
             }
         }
         catch (System.Exception ex)
