@@ -109,6 +109,11 @@ public class CustomersApplication : ICostumersApplication
                 response.IsSucces = true;
                 response.Message = "Registro obtenido exitosamente.";
             }
+            else
+            {
+                response.IsSucces = true;
+                response.Message = $"El cliente {customerId} no existe.";
+            }
 
         }
         catch (System.Exception ex)
