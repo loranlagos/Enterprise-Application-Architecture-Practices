@@ -5,11 +5,26 @@ using Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Nombre de la politica y extraccion de los origenes permitidos desde el archivo de configuracion
+var mypolicy = "policyApiEcommerce";
+var alllowedOrigins = builder.Configuration.GetSection("Cors:OriginCors").Get<string[]>() ?? [];
+
+
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+// Acvtivacion de la politica de origenes cruzados CORS
+builder.Services.AddCors(options =>
+    options.AddPolicy(
+        mypolicy, policy =>
+            policy.WithOrigins(alllowedOrigins)
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+    )
+);
 
 // Inyeccion de los metodos de extension de cadfa una de las capas de la solucion
 builder.Services.AddDomainServices();
@@ -37,6 +52,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(mypolicy); // Habilitamos el uso de cors con la politica definda
 
 app.UseAuthorization();
 
