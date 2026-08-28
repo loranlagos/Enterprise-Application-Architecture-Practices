@@ -19,9 +19,9 @@ public class CustomersApplication : ICostumersApplication
         _mapper = mapper;
     }
 
-    public async Task<Reponse<bool>> InsertAsync(CustomerDTO customerDTO)
+    public async Task<Response<bool>> InsertAsync(CustomerDTO customerDTO)
     {
-        var response = new Reponse<bool>();
+        var response = new Response<bool>();
 
         try
         {
@@ -43,9 +43,9 @@ public class CustomersApplication : ICostumersApplication
         return response;
     }
 
-    public async Task<Reponse<bool>> DeleteAsync(string customerId)
+    public async Task<Response<bool>> DeleteAsync(string customerId)
     {
-        var response = new Reponse<bool>();
+        var response = new Response<bool>();
 
         try
         {
@@ -71,9 +71,9 @@ public class CustomersApplication : ICostumersApplication
         return response;
     }
 
-    public async Task<Reponse<IEnumerable<CustomerDTO>>> GetAllAsync()
+    public async Task<Response<IEnumerable<CustomerDTO>>> GetAllAsync()
     {
-        var response = new Reponse<IEnumerable<CustomerDTO>>();
+        var response = new Response<IEnumerable<CustomerDTO>>();
 
         try
         {
@@ -95,9 +95,9 @@ public class CustomersApplication : ICostumersApplication
         return response;
     }
 
-    public async Task<Reponse<CustomerDTO>> GetAsync(string customerId)
+    public async Task<Response<CustomerDTO>> GetAsync(string customerId)
     {
-        var response = new Reponse<CustomerDTO>();
+        var response = new Response<CustomerDTO>();
 
         try
         {
@@ -125,9 +125,9 @@ public class CustomersApplication : ICostumersApplication
         return response;
     }
 
-    public async Task<Reponse<bool>> UpdateAsync(CustomerDTO customerDTO)
+    public async Task<Response<bool>> UpdateAsync(CustomerDTO customerDTO)
     {
-        var response = new Reponse<bool>();
+        var response = new Response<bool>();
 
         try
         {

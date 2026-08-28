@@ -30,7 +30,7 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Controllers
             Summary = "Registra un cliente",
             Description = "Retorna un objeto generico con el resultado de la operación"
         )]
-        [SwaggerResponse(200, "Cliente registrado", typeof(Reponse<bool>))]
+        [SwaggerResponse(200, "Cliente registrado", typeof(Response<bool>))]
         public async Task<IActionResult> InsertAsync([FromBody] CustomerDTO customerDTO)
         {
             if (customerDTO == null) return BadRequest();
@@ -56,7 +56,7 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Controllers
             Summary = "Actualiza un cliente en función de su id",
             Description = "Retorna un objeto generico con el resultado de la operación"
         )]
-        [SwaggerResponse(200, "Cliente actualizado", typeof(Reponse<bool>))]
+        [SwaggerResponse(200, "Cliente actualizado", typeof(Response<bool>))]
         public async Task<IActionResult> UpdateAsync([FromRoute] string customerId, [FromBody] CustomerDTO customerDTO)
         {
             if (customerDTO == null || customerId == null) return BadRequest();
@@ -83,7 +83,7 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Controllers
             Summary = "Elimina un cliente en funcion de su id",
             Description = "Retorna un objeto generico con el resultado de la operación"
         )]
-        [SwaggerResponse(200, "Cliente eliminado", typeof(Reponse<bool>))]
+        [SwaggerResponse(200, "Cliente eliminado", typeof(Response<bool>))]
         public async Task<IActionResult> DeleteAsync([FromRoute] string customerId)
         {
             if (string.IsNullOrEmpty(customerId)) return BadRequest();
@@ -105,7 +105,7 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Controllers
             Summary = "Obtiene un cliente en funcion de su id",
             Description = "Retorna un objeto generico con el resultado de la operación"
         )]
-        [SwaggerResponse(200, "Cliente encontrado", typeof(Reponse<CustomerDTO>))]
+        [SwaggerResponse(200, "Cliente encontrado", typeof(Response<CustomerDTO>))]
         public async Task<IActionResult> GetAsync([FromRoute] string customerId)
         {
             if (string.IsNullOrEmpty(customerId)) return BadRequest();
@@ -126,7 +126,7 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Controllers
             Summary = "Obtiene el listado de clientes completo",
             Description = "Retorna un objeto generico con el resultado de la operación"
         )]
-        [SwaggerResponse(200, "Clientes encontrados", typeof(Reponse<IEnumerable<CustomerDTO>>))]
+        [SwaggerResponse(200, "Clientes encontrados", typeof(Response<IEnumerable<CustomerDTO>>))]
         public async Task<IActionResult> GetAllAsync()
         {
             var response = await _costumersApplication.GetAllAsync();

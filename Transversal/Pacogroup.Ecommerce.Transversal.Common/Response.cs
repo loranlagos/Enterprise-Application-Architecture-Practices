@@ -1,6 +1,6 @@
 ﻿namespace Pacogroup.Ecommerce.Transversal.Common;
 
-public class Reponse<T>
+public class Response<T>
 {
     public T Data { get; set; }
     public bool IsSucces { get; set; }

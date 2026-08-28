@@ -9,6 +9,7 @@ namespace Pacogroup.Ecommerce.Application.Main.Commons
         public MappingsProfile()
         {
             CreateMap<Costumer, CustomerDTO>().ReverseMap();
+            CreateMap<User, SingUpDTO>().ReverseMap();
         }
     }
 }

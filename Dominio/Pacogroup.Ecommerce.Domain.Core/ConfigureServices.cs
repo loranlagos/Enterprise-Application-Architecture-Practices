@@ -9,6 +9,8 @@ namespace Pacogroup.Ecommerce.Domain.Core
         {
             // Inyeccion de la interfaz con su implementacion
             services.AddScoped<ICostumersDomain, CustomersDomain>();
+            services.AddScoped<IUsersDomain, UsersDomain>();
+
             return services;
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace Pacogroup.Ecommerce.Application.DTO;
 
-public sealed class CustomerDTO
+public sealed record CustomerDTO
 {
     public string? CustomerId { get; set; }
     public string? CompanyName { get; set; }

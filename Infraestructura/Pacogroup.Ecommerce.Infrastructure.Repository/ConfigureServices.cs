@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Pacogroup.Ecommerce.Domain.Entity;
 using Pacogroup.Ecommerce.Infrastructure.Data;
@@ -17,6 +18,8 @@ namespace Pacogroup.Ecommerce.Infrastructure.Repository
             services.AddSingleton<DapperContext>();
             services.AddScoped<ICostumersRepository, CostumersRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 
             return services;
         }

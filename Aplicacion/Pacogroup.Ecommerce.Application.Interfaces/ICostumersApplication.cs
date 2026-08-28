@@ -5,10 +5,10 @@ namespace Pacogroup.Ecommerce.Application.Interfaces
 {
     public interface ICostumersApplication
     {
-        Task<Reponse<bool>> InsertAsync(CustomerDTO customerDTO);
-        Task<Reponse<bool>> UpdateAsync(CustomerDTO customerDTO);
-        Task<Reponse<bool>> DeleteAsync(string customerId);
-        Task<Reponse<CustomerDTO>> GetAsync(string customerId);
-        Task<Reponse<IEnumerable<CustomerDTO>>> GetAllAsync();
+        Task<Response<bool>> InsertAsync(CustomerDTO customerDTO);
+        Task<Response<bool>> UpdateAsync(CustomerDTO customerDTO);
+        Task<Response<bool>> DeleteAsync(string customerId);
+        Task<Response<CustomerDTO>> GetAsync(string customerId);
+        Task<Response<IEnumerable<CustomerDTO>>> GetAllAsync();
     }
 }

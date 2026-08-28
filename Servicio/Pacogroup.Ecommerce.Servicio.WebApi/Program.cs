@@ -16,7 +16,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-// Acvtivacion de la politica de origenes cruzados CORS
+// Activacion de la politica de origenes cruzados CORS
 builder.Services.AddCors(options =>
     options.AddPolicy(
         mypolicy, policy =>
