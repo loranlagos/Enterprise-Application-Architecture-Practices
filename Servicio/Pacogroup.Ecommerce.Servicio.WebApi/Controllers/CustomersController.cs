@@ -1,4 +1,5 @@
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pacogroup.Ecommerce.Application.DTO;
 using Pacogroup.Ecommerce.Application.Interfaces;
@@ -8,6 +9,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace Pacogroup.Ecommerce.Services.WebApi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     [SwaggerTag("Operaciones relacionadas con clientes")]

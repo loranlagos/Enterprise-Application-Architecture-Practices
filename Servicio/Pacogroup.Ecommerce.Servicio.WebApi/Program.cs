@@ -1,6 +1,7 @@
 using Pacogroup.Ecommerce.Application.Main;
 using Pacogroup.Ecommerce.Domain.Core;
 using Pacogroup.Ecommerce.Infrastructure.Repository;
+using Pacogroup.Ecommerce.Services.WebApi.Modules.Authentication;
 using Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +31,7 @@ builder.Services.AddCors(options =>
 builder.Services.AddDomainServices();
 builder.Services.AddInfraestrutureServices();
 builder.Services.AddApplicationServices();
+builder.Services.AddAuth(builder.Configuration); // Adicion de la autenticacion con jwt
 
 // Inyeccion de Swagger
 builder.Services.AddSwagger();
@@ -55,6 +57,7 @@ app.UseHttpsRedirection();
 
 app.UseCors(mypolicy); // Habilitamos el uso de cors con la politica definda
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
