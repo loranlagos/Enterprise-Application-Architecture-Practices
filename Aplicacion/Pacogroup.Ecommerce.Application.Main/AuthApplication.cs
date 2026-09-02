@@ -4,6 +4,7 @@ using Pacogroup.Ecommerce.Application.Interfaces;
 using Pacogroup.Ecommerce.Domain.Entity;
 using Pacogroup.Ecommerce.Domain.Interfaces;
 using Pacogroup.Ecommerce.Transversal.Common;
+using Pacogroup.Ecommerce.Transversal.Logging;
 
 namespace Pacogroup.Ecommerce.Application.Main
 {
@@ -12,12 +13,14 @@ namespace Pacogroup.Ecommerce.Application.Main
         private readonly IUsersDomain _usersDomain;
         private readonly IJwtService _jwtService;
         private readonly IMapper _mapper;
+        private readonly IAppLogger<AuthApplication> _logger;
 
-        public AuthApplication(IUsersDomain usersDomain, IJwtService jwtService, IMapper mapper)
+        public AuthApplication(IUsersDomain usersDomain, IJwtService jwtService, IMapper mapper, IAppLogger<AuthApplication> logger)
         {
             _usersDomain = usersDomain;
             _jwtService = jwtService;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<Response<TokenDTO>> SignInAsync(SingInDTO signInDto)
@@ -31,6 +34,7 @@ namespace Pacogroup.Ecommerce.Application.Main
                 {
                     response.IsSucces = false;
                     response.Message = "Email no existe o no se encuentra registrado";
+                    _logger.LogError("Failed to validate email. Error: {Message}", response.Message);
                     return response;
                 }
 
@@ -39,6 +43,7 @@ namespace Pacogroup.Ecommerce.Application.Main
                 {
                     response.IsSucces = false;
                     response.Message = "Credenciales inválidas";
+                    _logger.LogError("Failed to validate login. Error: {Message}", response.Message);
                     return response;
                 }
 
@@ -56,6 +61,7 @@ namespace Pacogroup.Ecommerce.Application.Main
             {
                 response.IsSucces = false;
                 response.Message = e.Message;
+                _logger.LogError("Failed to execute login. Error: {Message}", response.Message);
             }
 
             return response;
@@ -71,6 +77,7 @@ namespace Pacogroup.Ecommerce.Application.Main
                 {
                     response.IsSucces = false;
                     response.Message = "El usuario ya existe";
+                    _logger.LogError("Failed to register user. Error: {Message}", response.Message);
                     return response;
                 }
 
@@ -88,6 +95,7 @@ namespace Pacogroup.Ecommerce.Application.Main
             {
                 response.IsSucces = false;
                 response.Message = e.Message;
+                _logger.LogError("Failed to execute register. Error: {Message}", response.Message);
             }
 
             return response;

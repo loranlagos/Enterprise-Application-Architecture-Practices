@@ -3,6 +3,8 @@ using Pacogroup.Ecommerce.Domain.Core;
 using Pacogroup.Ecommerce.Infrastructure.Repository;
 using Pacogroup.Ecommerce.Services.WebApi.Modules.Authentication;
 using Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger;
+using Pacogroup.Ecommerce.Transversal.Logging;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +34,8 @@ builder.Services.AddDomainServices();
 builder.Services.AddInfraestrutureServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddAuth(builder.Configuration); // Adicion de la autenticacion con jwt
+builder.Services.AddTransversalServices(builder.Configuration); // Inyeccion de la extension para logs
+builder.Host.UseSerilog();
 
 // Inyeccion de Swagger
 builder.Services.AddSwagger();
@@ -53,6 +57,7 @@ if (app.Environment.IsDevelopment())
     //app.MapOpenApi();
 }
 
+app.UseSerilogRequestLogging();
 app.UseHttpsRedirection();
 
 app.UseCors(mypolicy); // Habilitamos el uso de cors con la politica definda
@@ -62,4 +67,18 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+try
+{
+    Log.Information("Starting Pacagroup.Ecommerce API");
+    app.Run();
+}
+catch (System.Exception ex)
+{
+    Log.Fatal("Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
+
+

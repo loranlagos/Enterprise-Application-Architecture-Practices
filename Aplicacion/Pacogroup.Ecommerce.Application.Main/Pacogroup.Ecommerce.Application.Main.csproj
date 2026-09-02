@@ -10,6 +10,8 @@
     <ProjectReference Include="../../Dominio/Pacogroup.Ecommerce.Domain.Entity/Pacogroup.Ecommerce.Domain.Entity.csproj" />
     <ProjectReference Include="../../Dominio/Pacogroup.Ecommerce.Domain.Interfaces/Pacogroup.Ecommerce.Domain.Interfaces.csproj" />
     <ProjectReference Include="../../Transversal/Pacogroup.Ecommerce.Transversal.Common/Pacogroup.Ecommerce.Transversal.Common.csproj" />
+    <ProjectReference Include="../../Transversal/Pacogroup.Ecommerce.Transversal.Logging/Pacogroup.Ecommerce.Transversal.Logging.csproj" />
+    <ProjectReference Include="../../Transversal/Pacogroup.Ecommerce.Transversal.Mapper/Pacogroup.Ecommerce.Transversal.Mapper.csproj" />
     <ProjectReference Include="../Pacogroup.Ecommerce.Application.DTO/Pacogroup.Ecommerce.Application.DTO.csproj" />
     <ProjectReference Include="../Pacogroup.Ecommerce.Application.Interfaces/Pacogroup.Ecommerce.Application.Interfaces.csproj" />
   </ItemGroup>

@@ -22,6 +22,7 @@
     <ProjectReference Include="../../Aplicacion/Pacogroup.Ecommerce.Application.Main/Pacogroup.Ecommerce.Application.Main.csproj" />
     <ProjectReference Include="../../Dominio/Pacogroup.Ecommerce.Domain.Core/Pacogroup.Ecommerce.Domain.Core.csproj" />
     <ProjectReference Include="../../Infraestructura/Pacogroup.Ecommerce.Infrastructure.Repository/Pacogroup.Ecommerce.Infrastructure.Repository.csproj" />
+    <ProjectReference Include="../../Transversal/Pacogroup.Ecommerce.Transversal.Logging/Pacogroup.Ecommerce.Transversal.Logging.csproj" />
   </ItemGroup>
 
 </Project>
