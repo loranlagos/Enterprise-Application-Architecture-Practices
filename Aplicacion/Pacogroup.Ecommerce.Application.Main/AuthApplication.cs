@@ -1,6 +1,7 @@
 using AutoMapper;
 using Pacogroup.Ecommerce.Application.DTO;
 using Pacogroup.Ecommerce.Application.Interfaces;
+using Pacogroup.Ecommerce.Application.Validator;
 using Pacogroup.Ecommerce.Domain.Entity;
 using Pacogroup.Ecommerce.Domain.Interfaces;
 using Pacogroup.Ecommerce.Transversal.Common;
@@ -14,21 +15,45 @@ namespace Pacogroup.Ecommerce.Application.Main
         private readonly IJwtService _jwtService;
         private readonly IMapper _mapper;
         private readonly IAppLogger<AuthApplication> _logger;
+        private readonly SingInDTOValidator _singInValidator;
+        private readonly SingUpDTOValidator _singUpValidator;
 
-        public AuthApplication(IUsersDomain usersDomain, IJwtService jwtService, IMapper mapper, IAppLogger<AuthApplication> logger)
+        public AuthApplication(IUsersDomain usersDomain, IJwtService jwtService, IMapper mapper, IAppLogger<AuthApplication> logger, SingInDTOValidator singInValidator, SingUpDTOValidator singUpValidator)
         {
             _usersDomain = usersDomain;
             _jwtService = jwtService;
             _mapper = mapper;
             _logger = logger;
+            _singInValidator = singInValidator;
+            _singUpValidator = singUpValidator;
         }
 
         public async Task<Response<TokenDTO>> SignInAsync(SingInDTO signInDto)
         {
             var response = new Response<TokenDTO>();
+            var validator = await _singInValidator.ValidateAsync(signInDto);
 
             try
             {
+                if (!validator.IsValid)
+                {
+                    response.IsSucces = false;
+                    response.Message = "Autenticación fallida por uno o más errores";
+                    response.Errors = validator.Errors;
+
+                    var errors = string.Join(
+                        " | ",
+                        validator.Errors.Select(e => e.ErrorMessage)
+                    );
+
+                    _logger.LogError(
+                        "Failed for bad data in parameters. Errors: {Errors}",
+                        errors
+                    );
+
+                    return response;
+                }
+
                 var user = await _usersDomain.GetByEmailAsync(signInDto.Email);
                 if (user == null)
                 {
@@ -70,8 +95,29 @@ namespace Pacogroup.Ecommerce.Application.Main
         public async Task<Response<bool>> SignUpAsync(SingUpDTO signUpDto)
         {
             var response = new Response<bool>();
+            var validator = await _singUpValidator.ValidateAsync(signUpDto);
+
             try
             {
+                if (!validator.IsValid)
+                {
+                    response.IsSucces = false;
+                    response.Message = "Registro fallido por uno o más errores";
+                    response.Errors = validator.Errors;
+
+                    var errors = string.Join(
+                        " | ",
+                        validator.Errors.Select(e => e.ErrorMessage)
+                    );
+
+                    _logger.LogError(
+                        "Failed for bad data in parameters. Errors: {Errors}",
+                        errors
+                    );
+
+                    return response;
+                }
+
                 var existingUser = await _usersDomain.GetByEmailAsync(signUpDto.Email);
                 if (existingUser != null)
                 {

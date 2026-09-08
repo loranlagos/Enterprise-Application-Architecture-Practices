@@ -3,6 +3,7 @@ using Pacogroup.Ecommerce.Domain.Core;
 using Pacogroup.Ecommerce.Infrastructure.Repository;
 using Pacogroup.Ecommerce.Services.WebApi.Modules.Authentication;
 using Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger;
+using Pacogroup.Ecommerce.Services.WebApi.Modules.Validator;
 using Pacogroup.Ecommerce.Transversal.Logging;
 using Serilog;
 
@@ -36,6 +37,7 @@ builder.Services.AddApplicationServices();
 builder.Services.AddAuth(builder.Configuration); // Adicion de la autenticacion con jwt
 builder.Services.AddTransversalServices(builder.Configuration); // Inyeccion de la extension para logs
 builder.Host.UseSerilog();
+builder.Services.AddValidator();
 
 // Inyeccion de Swagger
 builder.Services.AddSwagger();
