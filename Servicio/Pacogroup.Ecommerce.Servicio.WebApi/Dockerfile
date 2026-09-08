@@ -27,4 +27,4 @@ WORKDIR /app
 # Copiar únicamente los archivos publicados
 COPY --from=build-env /app/out .
 
-ENTRYPOINT ["dotnet", "Pacogroup.Ecommerce.Servicio.WebApi.dll"]
+ENTRYPOINT ["dotnet", "Pacogroup.Ecommerce.Services.WebApi.dll"]
