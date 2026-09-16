@@ -5,13 +5,13 @@ using Pacogroup.Ecommerce.Application.DTO;
 using Pacogroup.Ecommerce.Application.Interfaces;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Pacogroup.Ecommerce.Services.WebApi.Controllers.v1
+namespace Pacogroup.Ecommerce.Services.WebApi.Controllers.v2
 {
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     [SwaggerTag("Operaciones de Autenticación")]
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthApplication _authApplication;

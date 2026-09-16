@@ -14,6 +14,14 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
             services.AddSwaggerGen(c =>
             {
+                // IMPORTANTE:
+                // Incluir en cada swagger solo los endpoints pertenecientes a esa versión.
+                c.DocInclusionPredicate(
+                    (documentName, apiDescription) =>
+                        apiDescription.GroupName == documentName
+                );
+
+
                 // Inclusion del archivo xml generado automaticamente
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

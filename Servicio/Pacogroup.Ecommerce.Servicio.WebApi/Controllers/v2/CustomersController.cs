@@ -8,13 +8,13 @@ using Pacogroup.Ecommerce.Domain.Entity;
 using Pacogroup.Ecommerce.Transversal.Common;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace Pacogroup.Ecommerce.Services.WebApi.Controllers.v1
+namespace Pacogroup.Ecommerce.Services.WebApi.Controllers.v2
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/v2/[controller]")]
     [ApiController]
     [SwaggerTag("Operaciones relacionadas con clientes")]
-    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     public class CustomersController : ControllerBase
     {
         private readonly ICostumersApplication _costumersApplication;

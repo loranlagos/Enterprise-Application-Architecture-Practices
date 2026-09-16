@@ -8,6 +8,7 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Modules.Validator
         {
             services.AddTransient<SingInDTOValidator>();
             services.AddTransient<SingUpDTOValidator>();
+            services.AddTransient<CustomerDTOValidator>();
 
             return services;
         }
