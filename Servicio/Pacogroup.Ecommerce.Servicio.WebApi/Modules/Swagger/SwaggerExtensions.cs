@@ -2,6 +2,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger
 {
@@ -9,29 +10,10 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger
     {
         public static IServiceCollection AddSwagger(this IServiceCollection services)
         {
+            //el documento swagger estatico ha sido migrado a la nueva logica de documentacion por version
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
             services.AddSwaggerGen(c =>
             {
-                // Estadar para la documentacion de Swagger con OpenApi
-                c.SwaggerDoc(
-                "v1", new OpenApiInfo
-                {
-                    Version = "v1",
-                    Title = "Pacagroup Technology Services API Market",
-                    Description = "A simple example ASP.NET Core Web API. ",
-                    TermsOfService = new Uri("https://pacagroup.com/terms"),
-                    Contact = new OpenApiContact
-                    {
-                        Name = "Lorenzo.Lagos",
-                        Email = "lagosariasa343@gmail.com",
-                        Url = new Uri("https://pacagroup.com/contact")
-                    },
-                    License = new OpenApiLicense
-                    {
-                        Name = "Use under LICX",
-                        Url = new Uri("https://pacagroup.com/licence")
-                    }
-                });
-
                 // Inclusion del archivo xml generado automaticamente
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

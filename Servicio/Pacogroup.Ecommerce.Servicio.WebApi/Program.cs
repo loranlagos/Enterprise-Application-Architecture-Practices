@@ -4,8 +4,10 @@ using Pacogroup.Ecommerce.Infrastructure.Repository;
 using Pacogroup.Ecommerce.Services.WebApi.Modules.Authentication;
 using Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger;
 using Pacogroup.Ecommerce.Services.WebApi.Modules.Validator;
+using Pacogroup.Ecommerce.Services.WebApi.Modules.Versioning;
 using Pacogroup.Ecommerce.Transversal.Logging;
 using Serilog;
+using Asp.Versioning.ApiExplorer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,9 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 var mypolicy = "policyApiEcommerce";
 var alllowedOrigins = builder.Configuration.GetSection("Cors:OriginCors").Get<string[]>() ?? [];
 
-
-// Add services to the container.
-
+// Add services to the container.n
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
@@ -39,18 +39,29 @@ builder.Services.AddTransversalServices(builder.Configuration); // Inyeccion de 
 builder.Host.UseSerilog();
 builder.Services.AddValidator();
 
-// Inyeccion de Swagger
+// Inyeccion de Swagger y versioning
+builder.Services.AddVersioning();
 builder.Services.AddSwagger();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"); // ruta del endpoint
+        // se añade un endpoint por cada version descubierta por el proveedor
+        foreach (var description in provider.ApiVersionDescriptions)
+        {
+            c.SwaggerEndpoint(
+                $"/swagger/{description.GroupName}/swagger.json",
+                description.GroupName.ToUpperInvariant()
+            );
+        }
+
         c.RoutePrefix = "swagger"; // prefijo de la ruta de swagger
         c.DisplayRequestDuration(); // permite visualizar la duracion de las peticiones
         c.EnableDeepLinking();
