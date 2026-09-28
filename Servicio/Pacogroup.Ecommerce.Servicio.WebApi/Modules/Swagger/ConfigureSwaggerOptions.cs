@@ -36,11 +36,11 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger
         /// <returns></returns>
         static OpenApiInfo CreateInfoForApiVersion(ApiVersionDescription description)
         {
-            return new OpenApiInfo
+            var info = new OpenApiInfo
             {
                 Version = description.ApiVersion.ToString(), //obtencion de la version desde la descripcion de la version de la API
                 Title = "Pacagroup Technology Services API Market",
-                Description = "A simple example ASP.NET Core Web API. ",
+                Description = "A simple example ASP.NET Core Web API.",
                 TermsOfService = new Uri("https://pacagroup.com/terms"),
                 Contact = new OpenApiContact
                 {
@@ -54,6 +54,13 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger
                     Url = new Uri("https://pacagroup.com/licence")
                 }
             };
+
+            if (description.IsDeprecated)
+            {
+                info.Description += "\nEsta version de la api esta obsoleta.";
+            }
+
+            return info;
         }
     }
 }

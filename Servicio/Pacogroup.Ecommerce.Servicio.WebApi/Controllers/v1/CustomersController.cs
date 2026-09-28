@@ -14,7 +14,7 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Controllers.v1
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [SwaggerTag("Operaciones relacionadas con clientes")]
-    [ApiVersion("1.0")]
+    [ApiVersion("1.0", Deprecated = true)]
     public class CustomersController : ControllerBase
     {
         private readonly ICostumersApplication _costumersApplication;

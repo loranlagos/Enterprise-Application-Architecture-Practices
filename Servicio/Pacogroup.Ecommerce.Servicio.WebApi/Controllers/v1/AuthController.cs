@@ -11,7 +11,7 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Controllers.v1
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [SwaggerTag("Operaciones de Autenticación")]
-    [ApiVersion("1.0")]
+    [ApiVersion("1.0", Deprecated = true)]
     public class AuthController : ControllerBase
     {
         private readonly IAuthApplication _authApplication;
