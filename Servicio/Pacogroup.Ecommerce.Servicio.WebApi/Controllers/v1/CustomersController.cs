@@ -11,7 +11,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace Pacogroup.Ecommerce.Services.WebApi.Controllers.v1
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     [SwaggerTag("Operaciones relacionadas con clientes")]
     [ApiVersion("1.0")]
