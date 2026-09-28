@@ -12,7 +12,7 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Modules.Versioning
                 options.DefaultApiVersion = new ApiVersion(1, 0);
                 options.AssumeDefaultVersionWhenUnspecified = true;
                 options.ReportApiVersions = true;
-                options.ApiVersionReader = new QueryStringApiVersionReader("api-version");
+                options.ApiVersionReader = new HeaderApiVersionReader("x-version");
             })
             .AddMvc()
             .AddApiExplorer(options =>
