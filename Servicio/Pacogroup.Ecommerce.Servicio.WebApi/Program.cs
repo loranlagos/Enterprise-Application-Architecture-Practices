@@ -8,6 +8,9 @@ using Pacogroup.Ecommerce.Services.WebApi.Modules.Versioning;
 using Pacogroup.Ecommerce.Transversal.Logging;
 using Serilog;
 using Asp.Versioning.ApiExplorer;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using HealthChecks.UI.Client;
+using Pacogroup.Ecommerce.Services.WebApi.Modules.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +41,7 @@ builder.Services.AddAuth(builder.Configuration); // Adicion de la autenticacion 
 builder.Services.AddTransversalServices(builder.Configuration); // Inyeccion de la extension para logs
 builder.Host.UseSerilog();
 builder.Services.AddValidator();
+builder.Services.AddHealthCheck(builder.Configuration);
 
 // Inyeccion de Swagger y versioning
 builder.Services.AddVersioning();
@@ -79,6 +83,13 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHealthChecksUI(); // mapeo del dashboard desde el cual se veran los estados de salud
+app.MapHealthChecks("/health", new HealthCheckOptions
+{
+    Predicate = _ => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+
+});
 
 try
 {
