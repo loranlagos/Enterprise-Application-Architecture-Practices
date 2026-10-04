@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Linq.Expressions;
 using Dapper;
 using Pacogroup.Ecommerce.Domain.Entity;
 using Pacogroup.Ecommerce.Infrastructure.Data;
@@ -13,6 +14,15 @@ public class CostumersRepository : ICostumersRepository
     public CostumersRepository(DapperContext dapperContext)
     {
         _context = dapperContext;
+    }
+
+    public async Task<int> CountAsync()
+    {
+        using var connection = _context.CreateConnection();
+        var query = "select count(*) from Customers";
+
+        var count = await connection.ExecuteScalarAsync<int>(query, commandType: CommandType.Text);
+        return count;
     }
 
     public async Task<bool> DeleteAsync(string costumerId)
@@ -33,6 +43,20 @@ public class CostumersRepository : ICostumersRepository
         var query = "CustomersList";
 
         var customers = await connection.QueryAsync<Costumer>(query, commandType: CommandType.StoredProcedure);
+        return customers;
+    }
+
+    public async Task<IEnumerable<Costumer>> GetAllWithPaginationAsync(int pageNumber, int pageSize)
+    {
+        using var connection = _context.CreateConnection();
+        var query = "CustomersListWithPagination";
+
+        var parameters = new DynamicParameters();
+        parameters.Add("PageNumber", pageNumber);
+        parameters.Add("PageSize", pageSize);
+
+        var customers = await connection.QueryAsync<Costumer>(query, parameters, commandType: CommandType.StoredProcedure);
+
         return customers;
     }
 

@@ -198,4 +198,32 @@ public class CustomersApplication : ICostumersApplication
 
         return response;
     }
+
+    public async Task<ResponsePagination<IEnumerable<CustomerDTO>>> GetAllWithPaginationAsync(int pageNumber, int pageSize)
+    {
+        var response = new ResponsePagination<IEnumerable<CustomerDTO>>();
+
+        try
+        {
+            var count = await _costumersDomain.CountAsync();
+            var costumers = await _costumersDomain.GetAllWithPaginationAsync(pageNumber, pageSize);
+            response.Data = _mapper.Map<IEnumerable<CustomerDTO>>(costumers);
+
+            if (response.Data != null)
+            {
+                response.IsSucces = true;
+                response.Message = "Lista paginada obtenida exitosamente.";
+                response.PageNumber = pageNumber;
+                response.TotalPages = (int)Math.Ceiling(count / (double)pageSize);
+                response.TotalCount = count;
+            }
+        }
+        catch (System.Exception ex)
+        {
+            response.IsSucces = false;
+            response.Message = $"Error al obtener la lista paginada de registros: {ex.Message}.";
+        }
+
+        return response;
+    }
 }

@@ -18,6 +18,11 @@ public class CustomersDomain : ICostumersDomain
         _unitOfWork = unitOfWork;
     }
 
+    public async Task<int> CountAsync()
+    {
+        return await _unitOfWork.Customers.CountAsync();
+    }
+
     /// <inheritdoc/>
     public async Task<bool> DeleteAsync(string customerId)
     {
@@ -28,6 +33,11 @@ public class CustomersDomain : ICostumersDomain
     public async Task<IEnumerable<Costumer>> GetAllAsync()
     {
         return await _unitOfWork.Customers.GetAllAsync();
+    }
+
+    public async Task<IEnumerable<Costumer>> GetAllWithPaginationAsync(int pageNumber, int pageSize)
+    {
+        return await _unitOfWork.Customers.GetAllWithPaginationAsync(pageNumber, pageSize);
     }
 
     /// <inheritdoc/>

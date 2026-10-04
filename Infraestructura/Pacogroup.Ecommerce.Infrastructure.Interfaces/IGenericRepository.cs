@@ -4,6 +4,10 @@ namespace Pacogroup.Ecommerce.Infrastructure.Interfaces
     {
         Task<IEnumerable<T>> GetAllAsync();
 
+        Task<IEnumerable<T>> GetAllWithPaginationAsync(int pageNumber, int pageSize);
+
+        Task<int> CountAsync();
+
         Task<T?> GetByIdAsync(string id);
 
         Task<bool> InsertAsync(T entity);

@@ -140,5 +140,23 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Controllers.v2
             return StatusCode((int)HttpStatusCode.InternalServerError, response);
         }
 
+        /// <summary>
+        /// Endpoint que ejecuta GetAllWithPaginationAsync de la capa de aplicacion para obtener una lista de registros paginados
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("list-pag/{pageNumber}")]
+        [SwaggerOperation(
+            Summary = "Obtiene el listado paginado de clientes completo",
+            Description = "Retorna un objeto generico con el resultado de la operación"
+        )]
+        [SwaggerResponse(200, "Clientes encontrados con paginacion", typeof(ResponsePagination<IEnumerable<CustomerDTO>>))]
+        public async Task<IActionResult> GetAllWithPaginationAsync([FromRoute] int pageNumber, [FromQuery] int pageSize)
+        {
+            var response = await _costumersApplication.GetAllWithPaginationAsync(pageNumber, pageSize);
+
+            if (response.IsSucces) return Ok(response);
+
+            return StatusCode((int)HttpStatusCode.InternalServerError, response);
+        }
     }
 }

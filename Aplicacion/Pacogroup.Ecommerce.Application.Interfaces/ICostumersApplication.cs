@@ -10,5 +10,6 @@ namespace Pacogroup.Ecommerce.Application.Interfaces
         Task<Response<bool>> DeleteAsync(string customerId);
         Task<Response<CustomerDTO>> GetAsync(string customerId);
         Task<Response<IEnumerable<CustomerDTO>>> GetAllAsync();
+        Task<ResponsePagination<IEnumerable<CustomerDTO>>> GetAllWithPaginationAsync(int pageNumber, int pageSize);
     }
 }

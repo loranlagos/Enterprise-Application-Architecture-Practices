@@ -37,5 +37,19 @@ namespace Pacogroup.Ecommerce.Domain.Interfaces
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<Costumer>> GetAllAsync();
+
+        /// <summary>
+        /// Permite obtener una lista de Costumers con paginacion
+        /// </summary>
+        /// <param name="pageNumber"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
+        Task<IEnumerable<Costumer>> GetAllWithPaginationAsync(int pageNumber, int pageSize);
+
+        /// <summary>
+        /// Permite contar todos los Costumers en la tabla
+        /// </summary>
+        /// <returns></returns>
+        Task<int> CountAsync();
     }
 }
