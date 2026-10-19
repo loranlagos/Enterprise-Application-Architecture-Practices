@@ -6,19 +6,19 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 namespace Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger
 {
     /// <summary>
-    /// Clase donde se configuran cada uno de los documentos swagger opor version
+    /// Configura un documento OpenAPI por cada version de la API descubierta.
     /// </summary>
-    public class ConfigureSwaggerOptions : IConfigureOptions<SwaggerGenOptions>
+    public class ConfigureApiDocsOptions : IConfigureOptions<SwaggerGenOptions>
     {
         private readonly IApiVersionDescriptionProvider _provider; //Interfaz que nos permite descubrir todas las versiones configuradas dentro de la api
 
-        public ConfigureSwaggerOptions(IApiVersionDescriptionProvider provider)
+        public ConfigureApiDocsOptions(IApiVersionDescriptionProvider provider)
         {
             _provider = provider;
         }
 
         /// <summary>
-        /// Confugura un nuevo metodo swagger por cada version descubierta por la interfaz IApiVersionDescriptionProvider de la API
+        /// Configura un nuevo metodo por cada version descubierta por la interfaz IApiVersionDescriptionProvider de la API
         /// </summary>
         /// <param name="options"></param>
         public void Configure(SwaggerGenOptions options)
@@ -38,26 +38,27 @@ namespace Pacogroup.Ecommerce.Services.WebApi.Modules.Swagger
         {
             var info = new OpenApiInfo
             {
-                Version = description.ApiVersion.ToString(), //obtencion de la version desde la descripcion de la version de la API
-                Title = "Pacagroup Technology Services API Market",
-                Description = "A simple example ASP.NET Core Web API.",
-                TermsOfService = new Uri("https://pacagroup.com/terms"),
+                Version = description.ApiVersion.ToString(),
+                Title = "Ecommerce API",
+                Description = """
+                    Backend API built with **ASP.NET Core (.NET 10)** following a layered architecture.
+
+                    - JWT authentication
+                    - API versioning (v1 deprecated, v2 current)
+                    - FluentValidation, Dapper, Serilog and health checks
+
+                    Practice project based on an enterprise backend architecture course.
+                    """,
                 Contact = new OpenApiContact
                 {
-                    Name = "Lorenzo.Lagos",
-                    Email = "lagosariasa343@gmail.com",
-                    Url = new Uri("https://pacagroup.com/contact")
-                },
-                License = new OpenApiLicense
-                {
-                    Name = "Use under LICX",
-                    Url = new Uri("https://pacagroup.com/licence")
+                    Name = "Lorenzo Lagos",
+                    Url = new Uri("https://github.com/loranlagos")
                 }
             };
 
             if (description.IsDeprecated)
             {
-                info.Description += "\nEsta version de la api esta obsoleta.";
+                info.Description += "\n\n**This API version is deprecated.**";
             }
 
             return info;

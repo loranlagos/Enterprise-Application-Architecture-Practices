@@ -11,6 +11,7 @@ using Asp.Versioning.ApiExplorer;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
 using Pacogroup.Ecommerce.Services.WebApi.Modules.HealthChecks;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,10 +19,8 @@ var builder = WebApplication.CreateBuilder(args);
 var mypolicy = "policyApiEcommerce";
 var alllowedOrigins = builder.Configuration.GetSection("Cors:OriginCors").Get<string[]>() ?? [];
 
-// Add services to the container.n
+// Add services to the container.
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
 // Activacion de la politica de origenes cruzados CORS
 builder.Services.AddCors(options =>
@@ -45,33 +44,14 @@ builder.Services.AddHealthCheck(builder.Configuration);
 
 // Inyeccion de Swagger y versioning
 builder.Services.AddVersioning();
-builder.Services.AddSwagger();
+builder.Services.AddApiDocumentation();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
-
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        // se añade un endpoint por cada version descubierta por el proveedor
-        foreach (var description in provider.ApiVersionDescriptions)
-        {
-            c.SwaggerEndpoint(
-                $"/swagger/{description.GroupName}/swagger.json",
-                description.GroupName.ToUpperInvariant()
-            );
-        }
-
-        c.RoutePrefix = "swagger"; // prefijo de la ruta de swagger
-        c.DisplayRequestDuration(); // permite visualizar la duracion de las peticiones
-        c.EnableDeepLinking();
-        c.ShowExtensions(); // permite ver campos y valores para operaciones y esquemas
-    });
-    //app.MapOpenApi();
+    app.UseApiDocumentation();
 }
 
 app.UseSerilogRequestLogging();
@@ -98,7 +78,7 @@ try
 }
 catch (System.Exception ex)
 {
-    Log.Fatal("Application terminated unexpectedly");
+    Log.Fatal(ex, "Application terminated unexpectedly");
 }
 finally
 {
